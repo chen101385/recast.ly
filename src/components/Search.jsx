@@ -12,13 +12,22 @@ class Search extends React.Component {
     });
   }
 
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.props.loadData(this.state.formText); 
+    }
+  }
+
   render () {
     return (
       <div className="search-bar form-inline">
-        <input className="form-control" type="text" onChange={this.handleFormInput.bind(this)}/>
+        <input className="form-control" type="text" 
+        onChange={this.handleFormInput.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
+
         <button className="btn hidden-sm-down" onClick={() => {
           this.props.loadData(this.state.formText);
         }}>
+
           <span className="glyphicon glyphicon-search"></span>
         </button>
       </div> 
