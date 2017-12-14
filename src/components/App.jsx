@@ -5,9 +5,10 @@ class App extends React.Component {
       selectedVideo: window.exampleVideoData[0],
       videos: window.exampleVideoData
     };
-    
+
     this.selectVideo = this.selectVideo.bind(this);
-    this.loadData = this.loadData.bind(this);
+    this.searchYouTube = this.searchYouTube.bind(this);
+    this.searchYouTube();
   }
 
   selectVideo(video) {
@@ -16,7 +17,7 @@ class App extends React.Component {
     });
   }
 
-  loadData(query, maxResults = 5) {
+  searchYouTube(query, maxResults = 5) {
     var that = this;
     var message = {
       q: query,
@@ -30,7 +31,7 @@ class App extends React.Component {
       data: message,
       contentType: "application",
       success: function (data) {
-        console.log('success! ', data);
+        console.log('success!')
         that.setState({
           selectedVideo: data.items[0],
           videos: data.items
@@ -47,7 +48,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search loadData={this.loadData}/>
+            <Search searchYouTube={this.searchYouTube}/>
           </div>
         </nav>
         <div className="row">

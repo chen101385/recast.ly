@@ -14,7 +14,7 @@ class Search extends React.Component {
 
   handleKeyPress(event) {
     if (event.key === 'Enter') {
-      this.props.loadData(this.state.formText); 
+      this.props.searchYouTube(this.state.formText); 
     }
   }
 
@@ -25,7 +25,7 @@ class Search extends React.Component {
         onChange={this.handleFormInput.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
 
         <button className="btn hidden-sm-down" onClick={() => {
-          this.props.loadData(this.state.formText);
+          this.props.searchYouTube(this.state.formText);
         }}>
 
           <span className="glyphicon glyphicon-search"></span>
@@ -35,9 +35,6 @@ class Search extends React.Component {
   }
 } 
 
-
-//Form has an onChange event that updates the state
-//button has an onClick event that calls loadData
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
