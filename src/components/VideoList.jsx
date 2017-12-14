@@ -1,12 +1,14 @@
-var VideoList = () => (
+var VideoList = (props) => (
   <div className="video-list">
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
+    {props.videos.map(video => 
+      <VideoListEntry video={video} selectVideo={props.selectVideo}/>
+    )}
   </div>
 );
+
+//props.videos = [...]
+  //map array
+  //<div> <videoListEntry /> </div>
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
