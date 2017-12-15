@@ -5,10 +5,6 @@ class App extends React.Component {
       selectedVideo: window.exampleVideoData[0],
       videos: window.exampleVideoData
     };
-
-    this.selectVideo = this.selectVideo.bind(this);
-    this.searchYouTube = this.searchYouTube.bind(this);
-    this.searchYouTube();
   }
 
   selectVideo(video) {
@@ -31,7 +27,6 @@ class App extends React.Component {
       data: message,
       contentType: "application",
       success: function (data) {
-        console.log('success!')
         that.setState({
           selectedVideo: data.items[0],
           videos: data.items
@@ -43,20 +38,25 @@ class App extends React.Component {
     });
   }
 
+  componentWillMount() {
+    this.searchYouTube();
+  }
+
   render() {
+    var {selectedVideo, videos} = this.state;
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search searchYouTube={this.searchYouTube}/>
+            <Search searchYouTube={this.searchYouTube.bind(this)}/>
           </div>
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.state.selectedVideo}/>
+            <VideoPlayer video={selectedVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.state.videos} selectVideo={this.selectVideo} />
+            <VideoList videos={videos} selectVideo={this.selectVideo.bind(this)} />
           </div>
         </div>
       </div>
