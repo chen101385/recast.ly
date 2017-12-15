@@ -22,10 +22,10 @@ class App extends React.Component {
       part: 'snippet'
     };
     $.ajax({
-      url: "https://www.googleapis.com/youtube/v3/search",
-      type: "GET",
+      url: 'https://www.googleapis.com/youtube/v3/search',
+      type: 'GET',
       data: message,
-      contentType: "application",
+      contentType: 'application',
       success: function (data) {
         that.setState({
           selectedVideo: data.items[0],
@@ -43,7 +43,6 @@ class App extends React.Component {
   }
 
   render() {
-    var {selectedVideo, videos} = this.state;
     return (
       <div>
         <nav className="navbar">
@@ -53,10 +52,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={selectedVideo}/>
+            <VideoPlayer video={this.state.selectedVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={videos} selectVideo={this.selectVideo.bind(this)} />
+            <VideoList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} />
           </div>
         </div>
       </div>
@@ -67,5 +66,5 @@ class App extends React.Component {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 window.App = App;
-ReactDOM.render(<App />, document.getElementById("app"));
+// ReactDOM.render(<App />, document.getElementById("app"));
 // ReactDOM.render(<VideoList />, document.getElementByClassName("col-md-5"));
